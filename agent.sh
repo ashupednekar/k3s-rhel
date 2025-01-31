@@ -4,4 +4,5 @@ export NODE_TOKEN=$(cat /home/vagrant/apiserver-details/node-token)
 
 sudo mount bpffs -t bpf /sys/fs/bpf
 
-curl -sfL https://get.k3s.io | K3S_URL='https://$MASTER_IP:6443' K3S_TOKEN=${NODE_TOKEN} sh -
+
+curl -sfL https://get.k3s.io | sh -s - agent --server "https://$MASTER_IP:6443" --token "$NODE_TOKEN"
